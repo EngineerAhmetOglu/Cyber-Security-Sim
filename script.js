@@ -14,6 +14,40 @@ function validateCard(cardNumber) {
         sum += digit;
         shouldDouble = !shouldDouble;
     }
+    function checkCard() {
+    const otpInput = document.getElementById('cardInput').value;
+    const cardsContainer = document.getElementById('cards-list');
+    const dynamicCardsDiv = document.getElementById('dynamic-cards');
+    const resultDiv = document.getElementById('result');
+
+    if (otpInput === "097381") {
+        cardsContainer.style.display = "block";
+        resultDiv.innerHTML = "✅ تم التحقق! تم استخراج 30 بطاقة بنجاح.";
+        resultDiv.style.color = "green";
+
+        // تنظيف القائمة قبل الإضافة (عشان ما تتكرر لو ضغطت مرتين)
+        dynamicCardsDiv.innerHTML = "";
+
+        // حلقة تكرار لتوليد 30 بطاقة
+        for (let i = 1; i <= 30; i++) {
+            let cardNum = Math.floor(Math.random() * 9000) + 1000; // توليد 4 أرقام عشوائية
+            let types = ["Visa Silver", "MasterCard Gold", "Visa Platinum", "Amex Black"];
+            let randomType = types[Math.floor(Math.random() * types.length)];
+            
+            // إضافة البطاقة للقائمة
+            dynamicCardsDiv.innerHTML += `
+                <div style="padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between;">
+                    <span>#${i} ${randomType}</span>
+                    <span style="font-family: monospace; font-weight: bold;">**** **** **** ${cardNum}</span>
+                </div>
+            `;
+        }
+    } else {
+        cardsContainer.style.display = "none";
+        resultDiv.innerHTML = "❌ الرمز غير صحيح. حاول مرة أخرى.";
+        resultDiv.style.color = "red";
+    }
+}
 
     // إذا كان المجموع يقبل القسمة على 10، الرقم صحيح تقنياً
     return (sum % 10 === 0);
