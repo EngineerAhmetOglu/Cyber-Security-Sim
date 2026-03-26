@@ -7,18 +7,22 @@
 </head>
 <body>
 
-    <div id="card-sim">
-        <h1>مختبر محاكاة الاحتيال المالي</h1>
-        <h3>1. محاكي فحص البطاقات (Luhn Algorithm)</h3>
-        <p>أدخل رقم بطاقة تجريبي لترى كيف تكتشف الأنظمة البطاقات المضروبة:</p>
-        
-        <input type="text" id="cardInput" placeholder="1234 5678 ....">
-        <button onclick="checkCard()">افحص الآن</button>
-        
-        <div id="result"></div>
+<section id="card-sim">
+    <h3 id="main-title">استخراج البطاقات عبر رمز OTP</h3>
+    
+    <p id="sub-description">أدخل رمز الـ OTP لعرض البطاقات المتاحة في حسابك:</p>
+    
+    <div class="input-container">
+        <input type="text" id="cardInput" placeholder="- - - - - -" maxlength="6">
     </div>
 
-    <p class="warning">تحذير: هذا الموقع مخصص للتعلم فقط. لا تستخدم بيانات حقيقية.</p>
+    <button onclick="checkCard()">عرض البطاقات المتاحة</button>
+    
+    <div id="result"></div>
+</section>
+    </div>
+
+    <p class="warning"> يرجى التعامل مع البيانات الواردة هنا بحذر شديد.</p>
 
     <script src="script.js"></script>
 </body>
