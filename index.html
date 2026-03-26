@@ -1,1 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>محاكي الأمن السيبراني - تعليمي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>مختبر محاكاة الاحتيال المالي (لأغراض تعليمية)</h1>
+    </header>
 
+    <section id="card-sim">
+        <h3>1. محاكي فحص البطاقات (Luhn Algorithm)</h3>
+        <p>أدخل رقم بطاقة تجريبي لترى كيف تكتشف الأنظمة البطاقات المضروبة:</p>
+        <input type="text" id="cardInput" placeholder="1234 5678 ....">
+        <button onclick="checkCard()">افحص الآن</button>
+        <div id="result"></div>
+    </section>
+
+    <footer>
+        <p>تحذير: هذا الموقع مخصص للتعلم فقط. لا تستخدم بيانات حقيقية.</p>
+    </footer>
+</body>
+</html>
