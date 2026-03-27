@@ -1,19 +1,30 @@
-function checkCard() {
-    const otpInput = document.getElementById('cardInput').value;
-    const resultDiv = document.getElementById('result');
+// 1. مصفوفة لأنواع البطاقات الحقيقية
+const cardProviders = ["Visa Platinum", "MasterCard World", "Mada Debit", "American Express", "Visa Signature", "MasterCard Gold"];
 
-    // سنعتبر أن أي رمز مكون من 6 أرقام سيعمل للمحاكاة
-    if (otpInput.length === 6) {
-        
-        // 1. بناء رسالة التحذير وقائمة البطاقات معاً
-        let outputHTML = `
-            <div style="background: #ffebee; padding: 15px; border-radius: 10px; border: 1px solid #ffcdd2; margin-top: 15px; text-align: right;">
-                <h4 style="color: #c62828;">❌ تحذير أمني!</h4>
-                <p>لقد قمت بإدخال رمز الـ OTP. في هجوم حقيقي، سحب المخترق الآن البيانات التالية:</p>
-                
-                <div id="dynamic-cards" style="max-height: 200px; overflow-y: auto; background: white; border: 1px solid #ddd; margin-top: 10px; font-family: monospace;">
-        `;
+// 2. داخل حلقة الـ for (توليد 30 سجل)
+for (let i = 1; i <= 30; i++) {
+    // اختيار نوع بطاقة عشوائي من المصفوفة أعلاه
+    let randomProvider = cardProviders[Math.floor(Math.random() * cardProviders.length)];
+    
+    // اختيار اسم عميل عشوائي (من مصفوفة الأسماء التي وضعناها سابقاً)
+    let randomName = names[Math.floor(Math.random() * names.length)];
+    let randomSuffix = Math.floor(Math.random() * 9000) + 1000;
 
+    outputHTML += `
+        <div class="card-item">
+            <div style="text-align: right;">
+                <span style="font-size: 10px; color: #888;">سجل رقم #${i}</span><br>
+                <strong style="color: #1a73e8; font-size: 14px;">${randomProvider}</strong><br>
+                <span style="color: #444; font-size: 12px;">العميل: ${randomName}</span>
+            </div>
+            <div style="text-align: left;">
+                <span style="font-family: monospace; font-weight: bold; background: #eceff1; padding: 4px 8px; border-radius: 5px; color: #263238;">
+                    **** ${randomSuffix}
+                </span><br>
+                <small style="color: #1a73e8; cursor: pointer; text-decoration: underline;" onclick="showCardDetails('${randomProvider}', '${randomName}', '${randomSuffix}')">عرض التفاصيل</small>
+            </div>
+        </div>`;
+}
         // 2. حلقة لتوليد 30 بطاقة وهمية
         for (let i = 1; i <= 30; i++) {
             let randomSuffix = Math.floor(Math.random() * 9000) + 1000;
