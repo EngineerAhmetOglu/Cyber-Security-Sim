@@ -37,13 +37,24 @@
         </div>
     </div>
 
-    <div id="cardActionsModal" class="modal">
+<div id="cardActionsModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('cardActionsModal')">&times;</span>
             <h3 id="selectedCardName" style="color:#1a73e8;"></h3>
-            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
-                <button onclick="alert('جاري تحميل البيانات...') " style="background-color: #34a853;">تحميل بيانات البطاقة 📥</button>
-                <button onclick="alert('جاري الانتقال للدفع...') " style="background-color: #1a73e8;">الانتقال إلى الدفع المباشر 💳</button>
+            
+            <div id="action-auth-section">
+                <p id="action-instruction" style="font-size: 13px; color: #555; margin-bottom: 10px;"></p>
+                <input type="password" id="actionPassword" placeholder="أدخل الرمز السري" style="width:90%; padding:10px; text-align:center; border: 1px solid #ddd; border-radius: 8px;">
+                
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                    <button id="confirmActionButton" style="background-color: #34a853;">تأكيد العملية 🔓</button>
+                </div>
+                <p id="action-error" style="color:red; font-size:12px; margin-top:10px; display:none;">الرمز السري غير صحيح!</p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;" id="initial-buttons">
+                <button onclick="prepareAction('download')" style="background-color: #34a853;">تحميل بيانات البطاقة 📥</button>
+                <button onclick="prepareAction('pay')" style="background-color: #1a73e8;">الانتقال إلى الدفع المباشر 💳</button>
             </div>
         </div>
     </div>
