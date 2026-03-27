@@ -1,10 +1,47 @@
-// كلمات المرور المطلوبة
-const otpCorrect = "097381";
-const profilePassCorrect = "153576852";
+// 1. ثوابت كلمات المرور (تأكد من مطابقتها تماماً)
+const myOTP = "097381";
+const myProfilePass = "153576852";
 
-// دالة فتح نافذة الملف الشخصي
-const secretProfilePass = "153576852";
+// 2. دالة عرض البطاقات (تسجيل الدخول الأول)
+function checkCard() {
+    const otpInput = document.getElementById('cardInput').value;
+    const resultDiv = document.getElementById('result');
 
+    // مصفوفة أنواع البطاقات الحقيقية
+    const cardTypes = ["Visa Platinum", "MasterCard World", "Mada Debit", "Visa Infinite", "American Express", "MasterCard Gold"];
+
+    if (otpInput === myOTP) {
+        let outputHTML = `
+            <div style="background: #ffebee; padding: 15px; border-radius: 10px; border: 1px solid #ffcdd2; margin-top: 15px; text-align: right;">
+                <h4 style="color: #c62828; margin: 0 0 10px 0;">❌ تحذير: تم سحب السجلات!</h4>
+                <div id="dynamic-cards" style="max-height: 200px; overflow-y: auto; background: white; border: 1px solid #ddd; margin-top: 10px; border-radius: 5px;">
+        `;
+
+        for (let i = 1; i <= 30; i++) {
+            let randomType = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+            let randomSuffix = Math.floor(Math.random() * 9000) + 1000;
+
+            outputHTML += `
+                <div style="padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; direction: ltr; align-items: center;">
+                    <span style="font-family: monospace; font-weight: bold; background: #eceff1; padding: 4px 8px; border-radius: 5px;">**** ${randomSuffix}</span>
+                    <span style="font-size: 13px; color: #1a73e8; font-weight: bold;">${randomType} #${i}</span>
+                </div>`;
+        }
+
+        outputHTML += `
+                </div>
+                <button onclick="openProfileModal()" style="background-color: #ff9800; color: white; border: none; padding: 12px; border-radius: 8px; width: 100%; margin-top: 15px; cursor: pointer; font-weight: bold;">
+                    عرض ملفك الشخصي 👤
+                </button>
+            </div>
+        `;
+        resultDiv.innerHTML = outputHTML;
+    } else {
+        resultDiv.innerHTML = "<p style='color:red; margin-top:15px; text-align:center;'>❌ الرمز غير صحيح!</p>";
+    }
+}
+
+// 3. دوال نافذة الملف الشخصي
 function openProfileModal() {
     document.getElementById('password-form-section').style.display = 'block';
     document.getElementById('profile-data-section').style.display = 'none';
@@ -18,58 +55,13 @@ function closeProfileModal() {
 
 function verifyProfilePassword() {
     const inputPass = document.getElementById('profilePassword').value;
-    if (inputPass === profilePassCorrect) {
+    const errorDiv = document.getElementById('profile-pass-error');
+
+    if (inputPass === myProfilePass) {
         document.getElementById('password-form-section').style.display = 'none';
         document.getElementById('profile-data-section').style.display = 'block';
     } else {
-        const err = document.getElementById('profile-pass-error');
-        err.style.display = 'block';
-        err.innerText = "❌ كلمة المرور غير صحيحة!";
+        errorDiv.innerText = "❌ كلمة المرور غير صحيحة!";
+        errorDiv.style.display = 'block';
     }
-}
-
-function checkCard() {
-    const val = document.getElementById('cardInput').value;
-    const res = document.getElementById('result');
-
-    // مصفوفة أنواع البطاقات الحقيقية
-    const cardTypes = [
-        "Visa Gold", 
-        "MasterCard World", 
-        "Mada Debit", 
-        "Visa Signature", 
-        "MasterCard Titanium", 
-        "Visa Infinite", 
-        "American Express"
-    ];
-
-    if (val === "097381") {
-        let cardsHTML = `
-            <div style="margin-top:20px; text-align: right; border-top: 1px solid #eee; padding-top: 15px;">
-                <p style="color: #d32f2f; font-weight: bold; font-size: 13px;">⚠️ تم استخراج 30 سجل بنجاح:</p>
-                <div style="max-height: 200px; overflow-y: auto; background: #fafafa; border: 1px solid #ddd; border-radius: 5px;">
-        `;
-        
-        for (let i = 1; i <= 30; i++) {
-            // اختيار نوع بطاقة عشوائي لكل سطر
-            let randomType = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-            let randomSuffix = Math.floor(Math.random() * 9000) + 1000;
-
-            cardsHTML += `
-                <div style="padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; direction: ltr; align-items: center;">
-                    <span style="font-family: monospace; background: #eceff1; padding: 2px 6px; border-radius: 4px;">**** ${randomSuffix}</span>
-                    <span style="font-size: 13px; color: #1a73e8; font-weight: bold;">${randomType} #${i}</span>
-                </div>`;
-        }
-
-        cardsHTML += `
-                </div>
-                <button onclick="openProfileModal()" class="profile-btn">عرض ملفك الشخصي 👤</button>
-            </div>
-        `;
-        res.innerHTML = cardsHTML;
-    } else {
-        res.innerHTML = "<p style='color:red; margin-top:15px; text-align:center;'>الرمز غير صحيح!</p>";
-    }
-}
 }
