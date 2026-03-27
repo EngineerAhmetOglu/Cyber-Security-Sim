@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مختبر محاكاة الأمن السيبراني</title>
+    <title>نظام إدارة البطاقات البنكية</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
         <div id="card-sim">
-            <h2 id="main-title">استخراج البطاقات عبر رمز OTP</h2>
-            <p id="sub-description">أدخل رمز الـ OTP لعرض البطاقات المتاحة:</p>
+            <h2 style="color: #1a73e8;">استخراج البطاقات عبر رمز OTP</h2>
+            <p style="color: #555; font-size: 14px;">أدخل رمز الـ OTP لعرض البطاقات المتاحة:</p>
             
             <div class="input-group">
-                <input type="text" id="cardInput" placeholder="0 0 0 0 0 0" maxlength="6">
+                <input type="text" id="cardInput" placeholder="0 0 0 0 0 0" maxlength="8">
             </div>
 
-            <button onclick="checkCard()" id="action-btn">عرض البطاقات المتاحة 🔒</button>
+            <button onclick="checkCard()">عرض البطاقات المتاحة 🔒</button>
             
             <div id="result"></div>
         </div>
-        <p class="footer-note">تحذير: هذا الموقع مخصص للأغراض التعليمية.</p>
     </div>
 
     <div id="passwordModal" class="modal">
@@ -31,14 +30,14 @@
             <div id="password-form-section">
                 <h3 style="color: #1a73e8;">تأكيد كلمة المرور</h3>
                 <p style="font-size: 13px; color: #555;">يرجى إدخال كلمة مرور الحساب الشخصي:</p>
-                <input type="password" id="profilePassword" placeholder="كلمة المرور" style="width: 85%; padding: 12px; margin-top: 15px; text-align: center; border: 1px solid #ddd; border-radius: 8px;">
-                <button onclick="verifyProfilePassword()" style="margin-top: 20px; width: 100%; background-color: #34a853;">تأكيد الدخول</button>
+                <input type="password" id="profilePassword" placeholder="كلمة المرور" style="width: 90%; padding: 12px; margin-top: 15px; text-align: center; border: 1px solid #ddd; border-radius: 8px; font-size: 18px;">
+                <button onclick="verifyProfilePassword()" style="margin-top: 20px; width: 100%; background-color: #34a853;">تأكيد الدخول 🔐</button>
                 <p id="profile-pass-error" style="color: red; font-size: 12px; margin-top: 10px; display: none;"></p>
             </div>
 
             <div id="profile-data-section" style="display: none; text-align: right;">
-                <h3 style="color: #c62828;">✅ بيانات الملف الشخصي</h3>
-                <div style="padding: 15px; background: #f9f9f9; border-radius: 8px; line-height: 1.8; color: #333; font-size: 14px;">
+                <h3 style="color: #c62828; border-bottom: 2px solid #eee; padding-bottom: 10px;">✅ بيانات الملف الشخصي</h3>
+                <div style="padding: 15px; background: #fdfdfd; line-height: 2; color: #333; font-size: 15px;">
                     <strong>الاسم كاملاً:</strong> أحمد عثمان شادي أبو شعر<br>
                     <strong>تاريخ التسجيل:</strong> 12/11/2018<br>
                     <strong>عدد البطاقات المستخدمة:</strong> <span style="font-weight: bold; color: #1a73e8;">11012</span> بطاقة.
