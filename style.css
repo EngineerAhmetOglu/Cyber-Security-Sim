@@ -1,25 +1,115 @@
+/* إعدادات عامة */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* هذا هو اللون الدافئ الهادئ الجديد (Beige Faint) */
-    background-color: #fdfaf5; 
-    display: flex; 
-    justify-content: center; 
+    background-color: #fdfaf5; /* اللون الدافئ الهادئ */
+    display: flex;
+    justify-content: center;
     align-items: center;
-    min-height: 100vh; 
+    min-height: 100vh;
     margin: 0;
-    /* تأثير انتقالي ناعم عند تحميل الصفحة */
-    transition: background-color 0.5s ease; 
-}}
+    direction: rtl; /* لضمان المحاذاة العربية الصحيحة */
+}
 
-/* Modal */
+/* الحاوية الرئيسية */
+.container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+#card-sim {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+/* المدخلات والأزرار */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+    color: white;
+}
+
+#action-btn, button[onclick="checkCard()"] {
+    background-color: #1a73e8;
+}
+
+/* النوافذ المنبثقة (Modals) */
 .modal {
-    display: none; position: fixed; z-index: 1000; left: 0; top: 0;
-    width: 100%; height: 100%; background-color: rgba(0,0,0,0.7);
-    justify-content: center; align-items: center;
+    display: none; /* مخفية افتراضياً */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); /* تعتيم الخلفية */
+    justify-content: center;
+    align-items: center;
 }
+
 .modal-content {
-    background-color: #fff; padding: 30px; border-radius: 15px;
-    width: 90%; max-width: 380px; position: relative; animation: fadeIn 0.3s;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 380px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
-@keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-.close-modal { position: absolute; top: 10px; right: 15px; font-size: 28px; cursor: pointer; color: #aaa; }
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+}
+
+/* قائمة البطاقات المستخرجة */
+#dynamic-cards {
+    max-height: 200px;
+    overflow-y: auto;
+    background: #fafafa;
+    border: 1px solid #eee;
+    margin: 15px 0;
+    border-radius: 8px;
+}
+
+.card-row {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    direction: ltr; /* لعرض النجوم على اليسار والاسم على اليمين */
+}
+
+/* الألوان الخاصة */
+.profile-btn { background-color: #ff9800; }
+.btn-green { background-color: #34a853; }
+.btn-blue { background-color: #1a73e8; }
